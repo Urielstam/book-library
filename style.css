@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+label,
+input,
+button,
+select,
+legend,
+textarea {
+    font-family: inherit;
+    font-size: 1.3rem;
+    line-height: 1.2;
+}
+
+input,
+textarea,
+select,
+button {
+  width: 150px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+    --form-control-color: rebeccapurple;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #3C4048;
+    color: wheat;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.header h1 {
+    font-size: 2rem;
+    /* margin: 0 0 1rem 0; */
+}
+
+.open-btn {
+    color: wheat;
+    background-color: #3C4048;
+    font-weight: 600;
+    padding: 0.625rem 1rem;
+    border: 2px solid yellow;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
+}
+
+.container {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* grid-template-rows: repeat(2, 1fr); */
+    gap: 2rem;
+}
+
+.card {
+    height: 200px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
+    border-left: 10px solid yellow;
+}
+
+.form-popup {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container {
+    font-weight: bold;
+    font-size: 1.5rem;
+    height: 300px;
+    width: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
+}
+
+.form-container input {
+    width: 200px;
+}
+
+.read {
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.form-container input[type="checkbox"] {
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: CanvasText;
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+input[type="checkbox"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+}
+
+.form-container button {
+    font-weight: 600;
+    padding: 0.625rem 0.75rem;
+    border: none;
+    border-radius: 15px;
+    background-color: yellow;
+    box-shadow: 0 2px 5px rgba(146, 146, 146, 0.1);
+}
