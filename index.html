@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="/index.js" defer></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.1/iconify-icon.min.js"></script>
     <title>Book Library</title>
 </head>
 <body>
@@ -16,21 +17,44 @@
             <button class="open-btn">Add Book</button>
         </div>
         <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <p>
+                        <span class="tag">Title:</span>
+                        <span class="card-title">Title</span>
+                    </p>
+                    <p>
+                        <span class="tag">Author:</span>
+                        <span class="card-author">Author</span>
+                    </p>
+                    <p>
+                        <span class="tag">Pages:</span>
+                        <span class="card-pages">000</span>
+                    </p>
+                </div>
+                    <div class="card-read red">
+                    <p>Read</p>
+                    <span><iconify-icon icon="material-symbols:menu-book-outline"></iconify-icon></span>
+                </div>
+            </div>
         </div>
         <div class="form-popup">
-            <form action="" class="form-container">
-                <h1>Add Book</h1>
+            <form action="" id="form-container">
+                <div class="form-heading">
+                    <h1>Add Book</h1>
+                    <span class="close"><iconify-icon icon="mdi:close-circle"></iconify-icon></span>
+                </div>
                 <div class="title">
                     <label class="input-label" for="title"></label>
-                    <input type="text" id="title" name="title" placeholder="Title">
+                    <input type="text" id="title" name="title" placeholder="Title" required>
                 </div>
                 <div class="author">
                     <label class="input-label" for="author"></label>
-                    <input type="text" id="author" name="author" placeholder="Author">
+                    <input type="text" id="author" name="author" placeholder="Author" required>
                 </div>
                 <div class="pages">
                     <label class="input-label" for="pages"></label>
-                    <input type="tel" id="pages" name="pages" placeholder="Pages">
+                    <input type="tel" id="pages" name="pages" placeholder="Pages" required pattern="^[0-9]+$">
                 </div>
                 <div class="read">
                     <label for="read">Have you read this?</label>
