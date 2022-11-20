@@ -70,10 +70,45 @@ body {
     background-color: #3C4048;
     font-weight: 600;
     padding: 0.625rem 1rem;
-    border: 2px solid yellow;
+    border: none;
     border-radius: 15px;
-    box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
+    box-shadow: 0 4px 7px rgba(138, 138, 138, 0.1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
+
+.open-btn:hover {
+    color:#3C4048;
+  }
+.open-btn::after {
+    content: "";
+    background: wheat;
+    position: absolute;
+    z-index: -1;
+    padding: 0.85em 0.75em;
+    display: block;
+  }
+  .open-btn::after {
+    transition: all 0.4s;
+}
+  .open-btn:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all 0.4s;
+  }
+  .open-btn::after {
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: 100%;
+  }
+
+
+
 
 .container {
     padding: 2rem;
@@ -85,7 +120,7 @@ body {
 
 .card {
     background-color: #3C4048;
-    height: 250px;
+    min-height: 300px;
     box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
     /* border-left: 10px solid yellow; */
     border-radius: 15px;
@@ -109,37 +144,68 @@ body {
     padding: 0 5px 5px 5px; */
 }
 
+.actions {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.action-btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 
 .card .card-read {
     width: 60%;
     align-self: center;
     border-radius: 15px;
     padding: 1rem 2rem;
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    color: #E97777;
+    border-top: 1px solid #E97777;
 }
 
-.green {
+
+.have-read {
     color: #B6E2A1;
     border-top: 1px solid #B6E2A1;
-}
+} 
 
-.green:hover {
+
+.have-read:hover {
     border: 1px solid #B6E2A1;
 }
 
-.red {
+.card-read:hover {
+    border: 1px solid #E97777;
+}
+
+/* .green {
+    color: #B6E2A1;
+    border-top: 1px solid #B6E2A1;
+} */
+
+/* .red {
     color: #E97777;
     border-top: 1px solid #E97777;
 }
 
 .red:hover {
     border: 1px solid #E97777;
+} */
+
+.remove {
+    font-size: 1.5em;
+    cursor: pointer;
 }
 
 
+/* FOrm Section */
 .form-popup {
     background-color: #3C4048;
     border: 2px solid yellow;
@@ -183,6 +249,7 @@ body {
     position: fixed;
     top: 10px;
     right: 10px;
+    cursor: pointer;
 }
 
 .form-heading span:hover {
@@ -256,3 +323,5 @@ input[type="checkbox"]:focus {
     background-color: yellow;
     box-shadow: 0 2px 5px rgba(146, 146, 146, 0.1);
 }
+
+

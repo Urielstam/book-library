@@ -1,45 +1,30 @@
-// Default values
 const hobbit = {
-    name: "Hobbit",
-    author: "Tolkien",
-    pages: 200,
+    name: 'hobbit',
+    author: 'Tolkien',
+    pages: 100,
     read: true,
 }
 
-const nameOfWind = {
-    name: "The Name of the Wind",
-    author: "Smith",
-    pages: 400,
-    read: false,
-}
 
-const elantris = {
-    name: "Elantris",
-    author: "Brandon",
-    pages: 500,
-    read: true,
-}
+let myLibrary = [hobbit, hobbit];
 
-const Hellow = {
-    name: "Elantris",
-    author: "Brandon",
-    pages: 500,
-    read: true,
-}
-
-let myLibrary = [hobbit, nameOfWind];
-
-// Book constructure
-function Book (name, author, pages, read) {
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read = false;
+class Book {
+    constructor(
+        name = "Unknown",
+        author = "Uknown", 
+        pages = "0", 
+        read = false,
+    )   {
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        }
 }
 
 
 
-
+// * Gloabal variables
 const openBtn = document.querySelector('.open-btn');
 const formPopUp = document.querySelector('.form-popup');
 const formContainer = document.querySelector('#form-container');
@@ -52,9 +37,10 @@ const read = document.querySelector('#read');
 let newTitle = document.querySelector('.card-title');
 let newAuthor = document.querySelector('.card-author');
 let newPages = document.querySelector('.card-pages');
-let cardRead = document.querySelector('.card-read');
+// let cardRead = document.querySelector('.card-read');
 
-// Popup Form
+
+// * Popup Form
 const openBookForm = () => {
     formContainer.reset();
     formPopUp.classList.add('active');  
@@ -85,10 +71,7 @@ formContainer.addEventListener('submit', (event) => {
 
 
 
-
-// Accept form input -> pass to addBook()
-
-// Add book instance
+// * Add book instance
 function addBook(title, author, pages, read) {
 
     const newBook = new Book();
@@ -99,57 +82,130 @@ function addBook(title, author, pages, read) {
     newBook.read = read;
 
     myLibrary.push(newBook);
-    displayBook(newBook);
+    createBook(newBook);
 }
 
-console.log(myLibrary);
+
+// Create book
+function createBook(book) {
+    
+    // let card = document.querySelector('.card');
+    // let cardClone = card.cloneNode(true);
+    
+    // newTitle.innerText = book.name;
+    // newAuthor.innerText = book.author;
+    // newPages.innerText = book.pages;
+    // card.after(cardClone);
+
+    // if (book.read) {
+    //     cardRead.classList.remove('red')
+    //     cardRead.classList.add('green');
+    // } else {
+    //         cardRead.classList.remove('green');
+    //         cardRead.classList.add('red');
+    //     }
+
+            
+    const container = document.querySelector('.container');
+    const actionBtns = document.querySelector('.action-btns');
+
+    const newCard = document.createElement('div');
+    const cardContent = document.createElement('div');
+    const newActions = document.createElement('div'); 
+
+    const titlePar = document.createElement('p');
+    const authPar = document.createElement('p');
+    const pagePar = document.createElement('p');
+
+    const tagTitleSpan = document.createElement('span');
+    const tagAuthSpan = document.createElement('span');
+    const tagPageSpan = document.createElement('span');
+    const titleSpan = document.createElement('span');
+    const authorSpan = document.createElement('span');
+    const pagesSpan = document.createElement('span'); 
+
+    const actionsCLone = actionBtns.cloneNode(true);
+
+
+    newCard.classList.add('card');
+    cardContent.classList.add('card-content');
+    newActions.classList.add('actions');
+    tagTitleSpan.classList.add('tag');
+    tagAuthSpan.classList.add('tag');
+    tagPageSpan.classList.add('tag');
+    titleSpan.classList.add('card-title');
+    authorSpan.classList.add('card-author');
+    pagesSpan.classList.add('card-pages');
+
+    tagTitleSpan.innerText = 'Title: ',
+    tagAuthSpan.innerText = 'Author: ',
+    tagPageSpan.innerText = 'Pages: ' ,
+
+    titleSpan.innerText = book.name
+    authorSpan.innerText = book.author
+    pagesSpan.innerText = book.pages
+   
+
+
+    titlePar.appendChild(tagTitleSpan);
+    titlePar.appendChild(titleSpan);
+
+    authPar.appendChild(tagAuthSpan);
+    authPar.appendChild(authorSpan);
+
+    pagePar.appendChild(tagPageSpan);
+    pagePar.appendChild(pagesSpan);
+    
+
+    cardContent.appendChild(titlePar);
+    cardContent.appendChild(authPar);
+    cardContent.appendChild(pagePar);
+
+    newCard.appendChild(cardContent);
+
+    newActions.appendChild(actionsCLone);
+    newCard.appendChild(newActions);
+
+    container.appendChild(newCard);
+
+    setData(newCard);
+
+}
+
+// Give new card a data set
+
+const setData = (card) => {
+    if (myLibrary.length || myLibrary.length === 0) {
+        for(let book in myLibrary) {
+            console.log(myLibrary.indexOf(book))
+            card.datset.card = myLibrary.indexOf(book);
+        }
+    }
+}
+
+
+// Show if book is read
+
+
+// allActions.forEach((item) => {
+//     item.addEventListener('click', (event) => {
+//         item.firstChild.classList.toggle('have-read');
+//     })
+// });
+
+
+// TODO -> create remove functionality
+
+
 
 // Display default content
 function displayOriginal() {
     for (const element of myLibrary) {
-        displayBook(element);
+        createBook(element);
     }  
 }
 displayOriginal();
 
-// Display book
-function displayBook(book) {
-
-
-    let card = document.querySelector('.card');
-    let cardClone = card.cloneNode(true);
-
-    newTitle.innerText = book.name;
-    newAuthor.innerText = book.author;
-    newPages.innerText = book.pages;
-
-    if (book.read) {
-        cardRead.classList.remove('red')
-        cardRead.classList.add('green');
-    } else {
-        cardRead.classList.remove('green');
-        cardRead.classList.add('red');
-    }
-
-    card.after(cardClone);
-
-}
-
-// Change if read
-let cardReadAll = document.querySelectorAll('.card-read');
-console.log(cardReadAll)
-
-cardReadAll.forEach((item) => {
-    item.addEventListener('click', (event) => {
-        if (item.classList.contains('red')) {
-            item.classList.remove('red')
-            item.classList.add('green');
-        } else {
-            item.classList.remove('green');
-            item.classList.add('red');
-        }
-    })
-})
 
 
 
