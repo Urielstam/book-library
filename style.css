@@ -118,7 +118,7 @@ body {
     gap: 2rem;
 }
 
-.card {
+.card, .default {
     background-color: #3C4048;
     min-height: 300px;
     box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
@@ -158,7 +158,7 @@ body {
 }
 
 
-.card .card-read {
+.card-read {
     width: 60%;
     align-self: center;
     border-radius: 15px;
@@ -166,38 +166,26 @@ body {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    color: #E97777;
-    border-top: 1px solid #E97777;
 }
 
 
-.have-read {
+.green {
     color: #B6E2A1;
     border-top: 1px solid #B6E2A1;
-} 
+}
 
-
-.have-read:hover {
+.green:hover {
     border: 1px solid #B6E2A1;
 }
 
-.card-read:hover {
-    border: 1px solid #E97777;
-}
-
-/* .green {
-    color: #B6E2A1;
-    border-top: 1px solid #B6E2A1;
-} */
-
-/* .red {
+.red {
     color: #E97777;
     border-top: 1px solid #E97777;
 }
 
 .red:hover {
     border: 1px solid #E97777;
-} */
+}
 
 .remove {
     font-size: 1.5em;

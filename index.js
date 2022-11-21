@@ -5,8 +5,16 @@ const hobbit = {
     read: true,
 }
 
+const elentrus = {
+    name: 'elentrus',
+    author: 'Brandon',
+    pages: 100,
+    read: false,
+}
 
-let myLibrary = [hobbit, hobbit];
+
+
+let myLibrary = [hobbit, elentrus];
 
 class Book {
     constructor(
@@ -37,7 +45,7 @@ const read = document.querySelector('#read');
 let newTitle = document.querySelector('.card-title');
 let newAuthor = document.querySelector('.card-author');
 let newPages = document.querySelector('.card-pages');
-// let cardRead = document.querySelector('.card-read');
+
 
 
 // * Popup Form
@@ -85,126 +93,132 @@ function addBook(title, author, pages, read) {
     createBook(newBook);
 }
 
+//* dispaly book
+const container = document.querySelector('.container');
 
-// Create book
-function createBook(book) {
-    
-    // let card = document.querySelector('.card');
-    // let cardClone = card.cloneNode(true);
-    
-    // newTitle.innerText = book.name;
-    // newAuthor.innerText = book.author;
-    // newPages.innerText = book.pages;
-    // card.after(cardClone);
-
-    // if (book.read) {
-    //     cardRead.classList.remove('red')
-    //     cardRead.classList.add('green');
-    // } else {
-    //         cardRead.classList.remove('green');
-    //         cardRead.classList.add('red');
-    //     }
-
-            
-    const container = document.querySelector('.container');
-    const actionBtns = document.querySelector('.action-btns');
-
-    const newCard = document.createElement('div');
-    const cardContent = document.createElement('div');
-    const newActions = document.createElement('div'); 
-
-    const titlePar = document.createElement('p');
-    const authPar = document.createElement('p');
-    const pagePar = document.createElement('p');
-
-    const tagTitleSpan = document.createElement('span');
-    const tagAuthSpan = document.createElement('span');
-    const tagPageSpan = document.createElement('span');
-    const titleSpan = document.createElement('span');
-    const authorSpan = document.createElement('span');
-    const pagesSpan = document.createElement('span'); 
-
-    const actionsCLone = actionBtns.cloneNode(true);
-
-
-    newCard.classList.add('card');
-    cardContent.classList.add('card-content');
-    newActions.classList.add('actions');
-    tagTitleSpan.classList.add('tag');
-    tagAuthSpan.classList.add('tag');
-    tagPageSpan.classList.add('tag');
-    titleSpan.classList.add('card-title');
-    authorSpan.classList.add('card-author');
-    pagesSpan.classList.add('card-pages');
-
-    tagTitleSpan.innerText = 'Title: ',
-    tagAuthSpan.innerText = 'Author: ',
-    tagPageSpan.innerText = 'Pages: ' ,
-
-    titleSpan.innerText = book.name
-    authorSpan.innerText = book.author
-    pagesSpan.innerText = book.pages
-   
-
-
-    titlePar.appendChild(tagTitleSpan);
-    titlePar.appendChild(titleSpan);
-
-    authPar.appendChild(tagAuthSpan);
-    authPar.appendChild(authorSpan);
-
-    pagePar.appendChild(tagPageSpan);
-    pagePar.appendChild(pagesSpan);
-    
-
-    cardContent.appendChild(titlePar);
-    cardContent.appendChild(authPar);
-    cardContent.appendChild(pagePar);
-
-    newCard.appendChild(cardContent);
-
-    newActions.appendChild(actionsCLone);
-    newCard.appendChild(newActions);
-
-    container.appendChild(newCard);
-
-    setData(newCard);
-
+// *Toggle 
+const toggleGreen = (element) => {
+    element.classList.remove('red')
+    element.classList.add('green');
 }
 
-// Give new card a data set
+const toggleRed = (element) => {
+    element.classList.remove('green');
+    element.classList.add('red');
+}
 
-const setData = (card) => {
-    if (myLibrary.length || myLibrary.length === 0) {
-        for(let book in myLibrary) {
-            console.log(myLibrary.indexOf(book))
-            card.datset.card = myLibrary.indexOf(book);
-        }
+const toggle = (element) => {
+    if(element.classList.contains('red')) {
+        toggleGreen(element);
+    } else {
+        toggleRed(element);
     }
 }
 
-
-// Show if book is read
-
-
-// allActions.forEach((item) => {
-//     item.addEventListener('click', (event) => {
-//         item.firstChild.classList.toggle('have-read');
-//     })
-// });
-
-
 // TODO -> create remove functionality
 
+const removeEl = (element) => {
+    let parentCardEl = element.target.parentElement.parentElement.parentElement.parentElement
+        console.log(parentCardEl)
+        if (element.target.tagName.toLowerCase() === 'iconify-icon') {
+            let index = Number(parentCardEl.dataset.card)
+            console.log(index)
+            console.log(myLibrary.indexOf(myLibrary[index]))
+            // container.remove(parentCardEl)
+            if(myLibrary.indexOf(myLibrary[index]) > -1) {
+                myLibrary.splice(index, 1);
+            }
+
+            parentCardEl.remove();
+        }
+}
+
+
+// Create book
+let i = 0;
+
+function createBook(book) {
+    
+    let card = document.querySelector('.default');
+    let cardClone = card.cloneNode(true);
+    cardClone.classList.add('card');
+    cardClone.classList.remove('default')
+
+    let realTitle = cardClone.firstElementChild.firstElementChild.lastElementChild;
+    let realAuthor = cardClone.firstElementChild.getElementsByTagName('p')[1].lastElementChild;
+    let realPages = cardClone.firstElementChild.lastElementChild.lastElementChild;
+    let cloneRead = cardClone.lastElementChild.firstElementChild.firstElementChild;
+    let removeBtn = cardClone.lastElementChild.firstElementChild.lastElementChild;
+
+
+    realTitle.innerText = book.name;
+    realAuthor.innerText = book.author;
+    realPages.innerText = book.pages;
+
+    // setData(book);
+
+    cardClone.dataset.card = i
+    i++;
+
+    if(book.read) {
+        toggleGreen(cloneRead);
+    } 
+    else {
+        toggleRed(cloneRead);
+    }
+
+    container.prepend(cardClone);
+    
+    removeBtn.addEventListener('click', (e) => {
+        removeEl(e);
+    })
+
+    cloneRead.addEventListener('click', (e) => {
+        console.log('TOggles')
+        toggle(cloneRead);
+    })
+  
+}
+
+let allCards = document.getElementsByClassName('card');
+console.log(allCards)
+
+const setData = (card) => {
+        let i = 0;
+        for( let elm of allCards) {
+            elm.dataset.card = i
+            i++;
+        }
+}
 
 
 // Display default content
+let card = document.querySelector('.default');
+let cardRead = card.lastElementChild.firstElementChild.firstElementChild;
+cardRead.addEventListener('click', () => {
+    toggle(cardRead);
+})
+
 function displayOriginal() {
     for (const element of myLibrary) {
         createBook(element);
     }  
 }
 displayOriginal();
+
+
+// * Display all content
+// function displayBooks() {
+//     for(let card in myLibrary) {
+        
+//     }
+// }
+// displayBooks();
+
+
+
+
+
 
 
 
