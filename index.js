@@ -28,6 +28,10 @@ class Book {
         this.pages = pages;
         this.read = read;
         }
+
+        isRead = () => {
+            this.read = !read;
+        }
 }
 
 
@@ -54,9 +58,12 @@ const openBookForm = () => {
     formPopUp.classList.add('active');  
 }
 
+
+
 const closeBookForm = () => {
     formPopUp.classList.remove('active');
 }
+
 
 openBtn.addEventListener('click', openBookForm);
 

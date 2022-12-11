@@ -158,6 +158,7 @@ body {
 }
 
 
+
 .card-read {
     width: 60%;
     align-self: center;
@@ -167,6 +168,7 @@ body {
     justify-content: space-between;
     cursor: pointer;
 }
+
 
 
 .green {
@@ -191,6 +193,45 @@ body {
     font-size: 1.5em;
     cursor: pointer;
 }
+
+/* .remove-grp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.remove-popup {
+    color: #E97777;
+    background-color: #3C4048;
+    border: 1px solid #E97777;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(138, 138, 138, 0.1);
+    padding: 0.625rem 1rem;
+    position: relative;
+    display: none;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 0.2s ease-in-out;
+
+}
+
+.remove-grp.active {
+    transform: translate(-50%, -50%) scale(1);
+} */
+/* 
+.notch {
+    position: absolute;
+    top: 40px;
+    left: 34px;
+    margin: 0;
+    border-top: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #E97777;
+    padding: 0;
+    width: 0;
+    height: 0;
+} */
 
 
 /* FOrm Section */
