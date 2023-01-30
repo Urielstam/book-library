@@ -281,6 +281,22 @@ body {
     cursor: pointer;
 }
 
+.book-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.book-detail span {
+    font-size: 0.7rem;
+}
+
+.error.active {
+    background-color: #E97777;
+    color: black;
+    padding: 0.3rem 0;
+}
+
 .form-heading span:hover {
     color: yellow;
 }

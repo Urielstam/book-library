@@ -42,9 +42,12 @@ const formPopUp = document.querySelector('.form-popup');
 const formContainer = document.querySelector('#form-container');
 const closeBtn = document.querySelector('.close');
 const title = document.querySelector('#title');
+const titleError = document.querySelector('.title-error');
 const author = document.querySelector('#author');
+const authorError = document.querySelector('.author-error');
 const pages = document.querySelector('#pages');
 const read = document.querySelector('#read');
+
 
 let newTitle = document.querySelector('.card-title');
 let newAuthor = document.querySelector('.card-author');
@@ -64,6 +67,31 @@ const closeBookForm = () => {
     formPopUp.classList.remove('active');
 }
 
+// * Form Validation
+const showError = (el, elError) => {
+    if(el.validity.valueMissing) {
+        elError.textContent = "You need to enter a value";
+    }
+    elError.className = "error active";
+}
+
+title.addEventListener('input', (e) => {
+    if(title.validity.valid) {
+        titleError.textContent = "";
+        titleError.className = "active";
+    } else {
+        showError(title, titleError)
+    }
+})
+
+author.addEventListener('input', (e) => {
+    if(author.validity.valid) {
+        authorError.textContent = "";
+        authorError.className = "active";
+    } else {
+        showError(author, authorError)
+    }
+})
 
 openBtn.addEventListener('click', openBookForm);
 
@@ -72,15 +100,24 @@ closeBtn.addEventListener('click', closeBookForm);
 formContainer.addEventListener('submit', (event) => {
 
     event.preventDefault();
+    if(!title.validity.valid) {
+        showError(title, titleError);
+    } 
+    else if (!author.validity.valid) {
+        showError(author, authorError)
+    } 
+    else {
+        let bookName = title.value;
+        let bookAuthor = author.value;
+        let bookPages = pages.value;
+        let bookRead = read.checked;
+        console.log(bookRead);
+    
+        addBook(bookName, bookAuthor, bookPages, bookRead);
+        closeBookForm();
+    }
 
-    let bookName = title.value;
-    let bookAuthor = author.value;
-    let bookPages = pages.value;
-    let bookRead = read.checked;
-    console.log(bookRead);
 
-    addBook(bookName, bookAuthor, bookPages, bookRead);
-    closeBookForm();
 
 })
 
